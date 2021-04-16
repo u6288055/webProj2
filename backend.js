@@ -6,18 +6,23 @@ dotenv.config();
 const session = require('express-session');
 var bodyParser = require('body-parser');
 app.use(express.json());
+
 const path = require('path');
+
 app.use(session({
     secret: 'secret',
     resave: true,
     saveUninitialized: true
 }));
+
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+
 app.use(bodyParser.json());
 //
 //--------------------------
+
 app.post('/auth', function (request, response) {
     var username = request.body.username;
     var password = request.body.password;
@@ -69,22 +74,9 @@ app.post('/auth', function (request, response) {
         //response.end();
     }
 });
-/* HERE NAJA */
-
-function authUser(req, res, x, next) {
-    console.log(x)
-    if (x === 'admin') {
-        console.log("hello admin");
-        // return next()
-    } else {
-        console.log("yametae kudasai");
-        // return res.send("No alow");
-    }
-
-}
 
 const route = express.Router();
-//const loginRoute = require('./routes/login');
+
 app.use(express.static(path.join(__dirname + "/assets")));
 app.use("/", route);;
 //app.set('')
@@ -98,6 +90,23 @@ var connection = mysql.createConnection({
     password: process.env.MYSQL_PASSWORD,
     database: process.env.MYSQL_DATABASE
 });
+
+/* HERE NAJA */
+
+function authUser(req, res, x, next) {
+    console.log(x)
+
+    if (x === 'admin') {
+        console.log("hello admin");
+        // return next()
+    } else {
+        console.log("yametae kudasai");
+        // return res.send("No alow");
+    }
+
+}
+/*to here */
+
 /*app.use(cookieSession({
     name:'session',
     keys:['key1','key2']
@@ -108,7 +117,8 @@ connection.connect(function (err) {
     }
     console.log("connected DB: " + process.env.MYSQL_DATABASE);
 });
-//userform
+
+//userform, admin only
 route.get('/users', function (req, res) {
     connection.query('SELECT * FROM user', function (error, results) {
         if (error) throw error;
@@ -138,6 +148,7 @@ route.post('/user', function (req, res) {
         });
     });
 });
+
 route.put('/user', function (req, res) {
     let UID = req.body.user.UID;
     let user = req.body.user;
@@ -156,6 +167,7 @@ route.put('/user', function (req, res) {
         })
     });
 });
+
 route.delete('/user', function (req, res) {
     let UID = req.body.UID;
     if (!UID) {
@@ -173,6 +185,7 @@ route.delete('/user', function (req, res) {
         });
     });
 });
+
 route.get('/user/:id', function (req, res) {
     let UID = req.params.id;
     if (!UID) {
@@ -190,7 +203,8 @@ route.get('/user/:id', function (req, res) {
         });
     });
 });
-//productform
+
+//productform admin onlly
 route.get('/products', function (req, res) {
     connection.query('SELECT * FROM product', function (error, results) {
         if (error) throw error;
@@ -272,6 +286,7 @@ route.get('/product/:id', function (req, res) {
         });
     });
 });
+
 /* Server listening */
 app.listen(process.env.PORT, function () {
     console.log("Server listening at Port 3030");
@@ -328,34 +343,39 @@ app.get('/productform', authUser, function (req, res, next) {
         res.send("Please login");
     }
 });
+
 route.get('/allproducts/:keyword', function (req, res) {
     console.log("result page request");
     console.log("search for = " + req.params.keyword);
-    //var key =document.getElementById("#output");
     let word = req.params.keyword;
-    if(word!= "")
-    {
-    connection.query(`SELECT * FROM product WHERE Pname like '%${word}%'`,function(error,results){
-        if(error) throw error;
-        else{
-            
-            
-            if (results.length>0)
-            {
-                return res.send({error:false,data:results,message:'Product list'});
+    if (word != "") {
+        connection.query(`SELECT * FROM product WHERE Pname like '%${word}%'`, function (error, results) {
+            if (error) throw error;
+            else {
+
+
+                if (results.length > 0) {
+                    return res.send({
+                        error: false,
+                        data: results,
+                        message: 'Product list'
+                    });
+                } else {
+                    connection.query(`SELECT * FROM product`, function (error, results) {
+                        if (error) throw error;
+                        else {
+                            return res.send({
+                                error: false,
+                                data: results,
+                                message: 'Product list'
+                            });
+                        }
+                    })
+                }
             }
-            else{
-                connection.query(`SELECT * FROM product`,function(error,results){
-                    if(error) throw error;
-                    else{
-                        return res.send({error:false,data:results,message:'Product list'});
-                    }
-                })
-            }
-        }
-    
+
+        })
     }
-    )}
 
 
 });

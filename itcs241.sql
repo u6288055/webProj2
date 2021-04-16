@@ -25,7 +25,8 @@ create table product(
   
 );*/
 insert into user values
-('1','Phuwanat','Meeyutem','phuwanat.mee@student.mahidol.ac.th','123 Nakhronpathom','089XXXXXXX','2000-06-30','phukao','123456789','admin');
+('1','Phuwanat','Meeyutem','phuwanat.mee@student.mahidol.ac.th','123 Nakhronpathom','089XXXXXXX','2000-06-30','phukao','123456789','admin'),
+('2','Nithinee','Trironnarith','nithinee.tri@student.mahidol.ac.th','55 bangkok','09xxxxxxxx','2000-12-06','gggirl','123456','user');
 
 insert into product values
 ('1','Zelda','adventure game','1800');
