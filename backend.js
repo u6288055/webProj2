@@ -76,7 +76,7 @@ app.post('/auth', function (request, response) {
 });
 
 const route = express.Router();
-//const loginRoute = require('./routes/login');
+
 app.use(express.static(path.join(__dirname + "/assets")));
 app.use("/", route);;
 //app.set('')
