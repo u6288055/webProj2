@@ -7,13 +7,11 @@
 <body>
   <header id="top">
     <h1>SHOPME
-      <input id="search" type="text" placeholder="search">
-      <a href="result"><input id="submit" type="submit" value="&#128269"></a>
     </h1>
   </header>
   <div class="navbar">
     <a href="homepage">&#9824 Home</a>
-    <a href="search"> &#9827 More</a>
+    <a href="search"> &#9827 Search</a>
     <a href="login"> &#9829 Login</a>
     <a href="aboutus"> &#9830 About Us</a>
     <a href="admin"> ⭐ admin</a>
@@ -23,6 +21,8 @@
     <h1>Product</h1>
     <label>PID:</label>
     <input type="text" placeholder="productID" id="PID"><br>
+    <label>ProductPIc url:</label>
+    <input type="text" placeholder="productpic url" id="PIC"><br>
     <label>Product name:</label>
     <input type="text" placeholder="Product name" id="PN"><br>
     <label>Product information:</label>
@@ -74,14 +74,16 @@
       }
       return data;
     }
-    let P_ID, P_NAME, P_INFO, P_PRICE;
+    let P_ID, P_PIC, P_NAME, P_INFO, P_PRICE;
     let P_IDTxtRef = document.querySelector("#PID");
+    let P_PICTxtref = document.querySelector("#PIC");
     let P_NAMETxtRef = document.querySelector("#PN");
     let P_INFOTxtRef = document.querySelector("#PI");
     let P_PRICETxtRef = document.querySelector("#PC");
 
     function clearInput() {
       P_IDTxtRef.value = "";
+      P_PICTxtref.value = "";
       P_NAMETxtRef.value = "";
       P_INFOTxtRef.value = "";
       P_PRICETxtRef.value = "";
@@ -93,6 +95,7 @@
     let selectallBtnRef = document.querySelector("#Selectall");
     insertBtnRef.addEventListener("click", () => {
       P_ID = P_IDTxtRef.value;
+      P_PIC = P_PICTxtref.value;
       P_NAME = P_NAMETxtRef.value;
       P_INFO = P_INFOTxtRef.value;
       P_PRICE = P_PRICETxtRef.value;
@@ -103,6 +106,7 @@
            P_INFO: pinfo,
            P_PRICE: price,*/
           PID: P_ID,
+          pic: P_PIC,
           Pname: P_NAME,
           pinfo: P_INFO,
           price: P_PRICE
@@ -120,6 +124,7 @@
     });
     updateBtnRef.addEventListener("click", () => {
       P_ID = P_IDTxtRef.value;
+      P_PIC = P_PICTxtref.value;
       P_NAME = P_NAMETxtRef.value;
       P_INFO = P_INFOTxtRef.value;
       P_PRICE = P_PRICETxtRef.value;
@@ -127,6 +132,7 @@
       let product_data = {
         product: {
           PID: P_ID,
+          pic: P_PIC,
           Pname: P_NAME,
           pinfo: P_INFO,
           price: P_PRICE
@@ -165,6 +171,7 @@
           if (data) {
             alert(data.message);
             P_IDTxtRef.value = data.data.PID;
+            P_PICTxtref.value = data.data.pic;
             P_NAMETxtRef.value = data.data.Pname;
             P_INFOTxtRef.value = data.data.pinfo;
             P_PRICETxtRef.value = data.data.price;
@@ -185,13 +192,14 @@
             output += "<thead>";
             output += "<tr>";
             output +=
-              "<th scope='col'>#</th><th scope='col'>Product name</th><th scope='col'> Product info </th> <th scope='col'>Price</th>";
+              "<th scope='col'>#</th><th scope='col'>img</th><th scope='col'>Product name</th><th scope='col'> Product info </th> <th scope='col'>Price</th>";
             output += "</tr>";
             output += "</thread>";
             output += "<tbody>";
             data.data.forEach((element) => {
               output += "<tr>";
               output += "<td>" + element.PID + "</td>";
+              output += "<td><img src='" + element.pic + "'></td>";
               output += "<td>" + element.Pname + "</td>";
               output += "<td>" + element.pinfo + "</td>";
               output += "<td>" + element.price + "</td>";
