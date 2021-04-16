@@ -298,7 +298,7 @@ form button:hover {
   align-items: center;
 }
 
-.admin .navbar{
+.admin.navbar{
   display: none;
 }
 
