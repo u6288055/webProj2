@@ -333,29 +333,29 @@ route.get('/allproducts/:keyword', function (req, res) {
     console.log("search for = " + req.params.keyword);
     //var key =document.getElementById("#output");
     let word = req.params.keyword;
-    if (word) {
-        connection.query(`SELECT * FROM product WHERE Pname like '%${word}%'`, function (error, results) {
-            if (error) throw error;
-            else {
-                return res.send({
-                    error: false,
-                    data: results,
-                    message: 'Product list'
-                });
+    if(word!= "")
+    {
+    connection.query(`SELECT * FROM product WHERE Pname like '%${word}%'`,function(error,results){
+        if(error) throw error;
+        else{
+            
+            
+            if (results.length>0)
+            {
+                return res.send({error:false,data:results,message:'Product list'});
             }
-        })
-    } else {
-        connection.query(`SELECT * FROM product`, function (error, results) {
-            if (error) throw error;
-            else {
-                return res.send({
-                    error: false,
-                    data: results,
-                    message: 'Product list'
-                });
+            else{
+                connection.query(`SELECT * FROM product`,function(error,results){
+                    if(error) throw error;
+                    else{
+                        return res.send({error:false,data:results,message:'Product list'});
+                    }
+                })
             }
-        })
+        }
+    
     }
+    )}
 
 
 });
