@@ -214,7 +214,7 @@ input#submit:hover {
 
 .textb {
   color: #fff;
-  background: rgba(255, 255, 255, 0.5);
+  background:  rgb(159, 230, 230);
   border: 1px valid rgba(255, 255, 255, 0.4);
 }
 
@@ -306,15 +306,17 @@ form button:hover {
 
 .admin button {
   padding: 15px;
-  margin: 3px;
+  margin-left: 5px;
+  margin-right: 5px;
   border-radius: 10px;
-  background-color: aqua;
+  background-color: rgb(159, 230, 230);
   font-size: 25px;
 
 }
 
 .admin button:hover {
-  background-color: aquamarine;
+  color: #fff;
+  background-color: rgb(109, 197, 168);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
 }
