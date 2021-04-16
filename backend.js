@@ -81,9 +81,7 @@ app.use(express.static(path.join(__dirname + "/assets")));
 app.use("/", route);;
 //app.set('')
 const mysql = require('mysql2');
-const {
-    connect
-} = require("http2");
+const { connect } = require("http2");
 var connection = mysql.createConnection({
     host: process.env.MYSQL_HOST,
     user: process.env.MYSQL_USERNAME,
@@ -95,6 +93,7 @@ var connection = mysql.createConnection({
 
 function authUser(req, res, x, next) {
     console.log(x)
+
     if (x === 'admin') {
         console.log("hello admin");
         // return next()
