@@ -4,7 +4,7 @@
   "description": "",
   "main": "backend.js",
   "scripts": {
-    "start": "nodemon src/backend.js"
+    "start": "nodemon backend.js"
   },
   "author": "6288095 Phuwanat Meeyutem Sec2",
   "license": "ISC",

@@ -85,7 +85,7 @@ function authUser(req, res, x, next) {
 
 const route = express.Router();
 //const loginRoute = require('./routes/login');
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(path.join(__dirname + "/assets")));
 app.use("/", route);;
 //app.set('')
 const mysql = require('mysql2');
@@ -279,24 +279,24 @@ app.listen(process.env.PORT, function () {
 
 route.get('/login', function (req, res) {
     console.log("login page request");
-    res.status(200).sendFile(path.join(__dirname + '/login.html'));
+    res.status(200).sendFile(path.join(__dirname + '/assets/static/login.html'));
 });
 route.get('/aboutus', function (req, res) {
     console.log("about us page request");
-    res.status(200).sendFile(path.join(__dirname + '/aboutus.html'));
+    res.status(200).sendFile(path.join(__dirname + '/assets/static/aboutus.html'));
 });
 route.get('/homepage', function (req, res) {
     console.log("home page request");
-    res.status(200).sendFile(path.join(__dirname + '/homepage.html'));
+    res.status(200).sendFile(path.join(__dirname + '/assets/static/homepage.html'));
     //req.use(express.static((__dirname+'/homepage.html')))
 });
 
 route.get('/search', function (req, res) {
     console.log("search page request");
-    res.status(200).sendFile(path.join(__dirname + '/search.html'));
+    res.status(200).sendFile(path.join(__dirname + '/assets/static/search.html'));
 });
 route.get('/result', function (req, res) {
-    res.status(200).sendFile(path.join(__dirname + '/result.html'));
+    res.status(200).sendFile(path.join(__dirname + '/assets/static/result.html'));
 
 });
 
@@ -305,7 +305,7 @@ app.get('/admin', authUser, function (request, response, next) {
 
     if (request.session.loggedin) {
         console.log(`admin page request from ${request.session.username}`);
-        response.status(200).sendFile(path.join(__dirname + '/admin.html'));
+        response.status(200).sendFile(path.join(__dirname + '/assets/static/admin.html'));
     } else {
         response.send("Please login");
     }
@@ -315,7 +315,7 @@ app.get('/admin', authUser, function (request, response, next) {
 app.get('/userform', authUser, function (req, res, next) {
     if (req.session.loggedin) {
         console.log(`userform request from ${req.session.username}`);
-        res.status(200).sendFile(path.join(__dirname + '/userform.html'));
+        res.status(200).sendFile(path.join(__dirname + '/assets/static/userform.html'));
     } else {
         res.send("Please login");
     }
@@ -323,7 +323,7 @@ app.get('/userform', authUser, function (req, res, next) {
 app.get('/productform', authUser, function (req, res, next) {
     if (req.session.loggedin) {
         console.log(`productform request from ${req.session.username}`);
-        res.status(200).sendFile(path.join(__dirname + '/productform.html'));
+        res.status(200).sendFile(path.join(__dirname + '/assets/static/productform.html'));
     } else {
         res.send("Please login");
     }
