@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+          box-sizing: border-box;
+        }
+        html{
+
+            background-color: #2E4053;
+        }
+        body {
+            font-family: sans-serif;
+            background-color:aliceblue;
+            margin: 0;
+        }
+
+        header h1 {
+            border: none;
+            top: 0;
+            background-color: #2E4053;
+        }
+
+        header,footer {
+            background-color: #2E4053;
+            text-align: light;
+            color: #F8F9F9;
+        }
+        .foo {
+          padding: 1px;
+          margin: 1px;
+          background-color: #2E4053;
+          justify-content: center;
+        }
+
+        .foo h4{
+          
+          text-decoration: none;
+          text-transform: none;
+          color: white;
+        }
+
+        
+
+        .con {
+          padding: 3px;
+          justify-content: center;
+          display: flex;
+          flex-direction: column;
+        }
+
+        h1 {
+            padding: 20px;
+            margin-bottom: 0px;
+        }
+
+        .navbar {
+            background-color: #2E4053;
+            width: 100%;
+            overflow: auto;
+        }
+
+        .navbar a {
+          float: left;
+          color: #FDFEFE;
+          padding: 14px 16px;
+          text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #85929E;
+        }
+
+        .h3.p1{
+           align-items: center;
+           position: relative;
+           
+        }
+        .slide
+        {
+          display: block;
+          margin-left: auto;  
+          margin-right: auto;  
+          height: 300px;
+          align-items: center;
+          justify-content: center;
+          margin-top:20px;
+        }
+
+        .container{
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        .card{
+          
+          text-align: center;
+          width: 27%;
+          display: flex;
+          flex-direction: column;
+          padding: 20px;
+          margin: 10px;
+          background-color: rgb(247, 246, 245);  
+          justify-content: center;
+          border-radius: 50px;
+
+        }
+        .card-img-top{
+            height: 400px;
+          }
+        .card-img-top:hover{
+            opacity:0.5;
+          }
+          .des {          
+          color: lightslategray;
+          font-size: 12px;
+          
+          text-align: center;
+        }
+
+        .price {
+          color: lightslategray;
+          font-size: 17px;
+          text-align: center;
+        }
+        .card button{
+          border: none;
+          color: white;
+          padding: 12px;
+          background-color: #2E4053;
+          text-align: center;
+          cursor: pointer;
+          width: 190px;
+        }
+
+        .card button:hover {
+          background-color: cadetblue;
+        }
+        .card:hover{
+          box-shadow: 0 8px 16px 0 rgba(0,0,0,0.8);
+          border: solid #95A5A6 2px;
+        }
+        .sp
+        {
+            width:500px;
+            height:80px;
+            background:#fff;
+            box-shadow: 2px 5px 5px 0px rgba (0,0,0,0.15);
+         
+        }
+        .sp h1{
+            text-align: center;
+            text-transform: uppercase;
+            font-family: "Helvetica", sans-serif;
+        }
+       .pic{
+         height:500px;
+         width:auto;
+         
+       }
+       .columnft
+       {
+         
+         flex-direction:row;
+       }
+       input#search{
+          float: right;
+          height: 36px;
+          width: 250px;
+          border: none;
+          border-radius: 0px 5px 5px 0px;
+          padding: 6px;
+          margin-top: 8px;
+          margin-right: 16px;
+          font-size: 17px;
+        }
+/* search */
+        input#submit {
+          width: 36px;
+          height: 36px;
+          display: block;
+          border: none;
+          border-radius: 5px 0px 0 5px;
+          align-items: center;
+          float: right;
+          margin-top:8px;
+          font-size: 17px;
+          background:lightslategray;
+
+        }
+
+        input#submit:hover{
+          background: cadetblue;
+
+        }
+        footer{
+          text-align: center;
+        }
+        footer a{
+          text-decoration: none;
+        }
+        .foo a h4:hover{
+          color:aqua;
+        }
+        .bsearch a{
+          text-decoration: none;
+          color: black;
+          }   
+        
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+  <header id="top">
+    <h1>SHOPME
+        <input id = "search" type = "text" placeholder="search">
+        <a href="result.html"><input id = "submit" type="submit" value="&#128269"></a>
+    </h1>
+</header>
+<div class="navbar" >
+  <a href="home_page.html">&#9824 Home</a>
+  <a href="#search more"> &#9827 search more</a>
+  <a href="login.html"> &#9829 Login</a>
+  <a href="about_us.html"> &#9830 About us</a>
+  
+ 
+
+</div>
+
+    <div class="sp"center ><h1>"Result"</h1></div>
+  <div class="container">
+    
+   
+
+        <div class="card" style="width: 18rem;">
+        <img src="picture/overwatch1.jpg" class="card-img-top" alt="online game">
+        <div class="card-body">
+          <h4><b>Overwatch</b></h4>
+          <section class="price"> 1200฿ </section><br>
+          <section class="des">The World Needs Heros Slow down time, rain destruction from above in a jet-powered armor suit, or pilot superpower hamster in ball.</section><br>
+          <p><button>Add to Cart</button></p>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="picture/slender_man1.webp" class="card-img-top" alt="offline game">
+        <div class="card-body">
+            <h4><b>Slender Man</b></h4>
+            <section class="price"> 699฿ </section><br>
+            <section class="des">You're on your own. No one to come for you. No one to help you. No one to hear you scream.</section><br>
+            <p><button>Add to Cart</button></p>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+        <img src="picture/Fall_Guys1.jpg" class="card-img-top" alt="online game">
+        <div class="card-body">
+            <h4><b>Fall Guys</b></h4>
+            <section class="price"> 500฿ </section><br>
+            <section class="des">Up to 60 players compete in matches with battle royale-style gameplay.</section><br>
+            <p><button>Add to Cart</button></p>
+        </div>
+      </div>
+      <div class="card" style="width: 18rem;">
+        <img src="picture/cookie_kingdom.png" class="card-img-top" alt="online game">
+        <div class="card-body">
+            <h4><b>Cookie Run Kingdom</b></h4>
+            <section class="price"> Free! </section><br>
+            <section class="des">Build your kingdom with the cookies in cookies's world.</section><br>
+            <p><button>Add to Cart</button></p>
+        </div>
+       </div>
+       <div class="card" style="width: 18rem;">
+        <img src="picture/genshin.jpg" class="card-img-top" alt="online game">
+        <div class="card-body">
+            <h4><b>Genshin Impact</b></h4>
+            <section class="price"> Free! </section><br>
+            <section class="des">No.1 RPG game with beautiful art </section><br>
+            <p><button>Add to Cart</button></p>
+        </div>
+       </div>
+       <div class="card" style="width: 18rem;">
+        <img src="picture/little_nightmare.webp" class="card-img-top" alt="offline game">
+        <div class="card-body">
+            <h4><b>Little Nightmare 2</b></h4>
+            <section class="price"> 990฿ </section><br>
+            <section class="des">Return to a world of charming horror in Little Nightmares II, a suspense adventure game in which you play as Mono, a young boy trapped in a world that has been distorted by the humming transmission of a distant tower.</section><br>
+            <p><button>Add to Cart</button></p>
+        </div>
+       </div>
+       <div class="card" style="width: 18rem;">
+        <img src="picture/pasmo.webp" class="card-img-top" alt="online game">
+        <div class="card-body">
+            <h4><b>Pasmophobia</b></h4>
+        <section class="price"> 499฿ </section><br>
+        <section class="des">Go, experiece and check the type of ghost </section><br>
+        <p><button>Add to Cart</button></p>
+        </div>
+       </div>
+
+       <div class="card" style="width: 18rem;">
+        <img src="picture/minecraft.jpg" class="card-img-top" alt="offline game">
+        <div class="card-body">
+            <h4><b>Minecraft</b></h4>
+            <section class="price"> 699฿ </section><br>
+            <section class="des">Prepare for an adventure of limitless possibilities as you build, mine, battle mobs, and explore the ever-changing Minecraft landscape.</section><br>
+            <p><button>Add to Cart</button></p>
+        </div>
+
+       </div>
+         <div class="card" style="width: 18rem;">
+        <img src="picture/vrchat.jpg" class="card-img-top" alt="online game">
+        <div class="card-body">
+            <h4><b>Vr chat</b></h4>
+            <section class="price"> Free! </section><br>
+            <section class="des">a free-to-play massively multiplayer online virtual reality social platform and allows players to interact with others as 3D character models</section><br>
+            <p><button>Add to Cart</button></p>
+        </div>
+       </div>
+</div>
+
+  </div>    
+
+  
+   
+  <footer>        
+    <div class="foo">
+      <a href="#top"><h4>Back to Top</h4></a>
+      <a href="home_page.html"><h4>Back to Homepage</h4></a>
+      </div>
+    
+   
+      </footer>
+</body>
+
+</html>
