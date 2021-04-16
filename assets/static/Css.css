@@ -298,6 +298,10 @@ form button:hover {
   align-items: center;
 }
 
+.admin .navbar{
+  display: none;
+}
+
 .admin h1 {
   color: #18222c;
   font-size: 60px;
