@@ -62,7 +62,7 @@ app.post('/auth', function (request, response) {
 
             } else {
                 console.log('Incorrect Username and/or Password!');
-                response.redirect('/login');
+                response.redirect('/auth-alert');
             }
             response.end();
 
@@ -305,6 +305,10 @@ route.get('/homepage', function (req, res) {
     res.status(200).sendFile(path.join(__dirname + '/assets/static/homepage.html'));
     //req.use(express.static((__dirname+'/homepage.html')))
 });
+route.get('/auth-alert', function (req, res) {
+    console.log("username or password error");
+    res.status(200).sendFile(path.join(__dirname) + '/assets/static/auth-alert.html')
+})
 
 route.get('/search', function (req, res) {
     console.log("search page request");

@@ -47,6 +47,7 @@
         if (data.data.length > 0) {
 
           //alert(data.message);
+          console.log(data.data)
           let output = "";
           output += `<h1><mark style="background-color:white"> Searching for "${out}"</mark></h1>`
           output += "<div class='container'>"
@@ -67,7 +68,7 @@
           ;
           let result = document.querySelector("#output");
           result.innerHTML += output;
-          clearInput();
+          // clearInput();
         }
       }
     );
