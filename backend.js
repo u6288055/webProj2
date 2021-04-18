@@ -322,7 +322,8 @@ app.get('/admin', authUser, function (request, response, next) {
         console.log(`admin page request from ${request.session.username}`);
         response.status(200).sendFile(path.join(__dirname + '/assets/static/admin.html'));
     } else {
-        response.send("Please login");
+        // response.send("Please login");
+        response.status(200).sendFile(path.join(__dirname + '/assets/static/noLogin.html'));
     }
 
     //response.end();
@@ -332,7 +333,8 @@ app.get('/userform', authUser, function (req, res, next) {
         console.log(`userform request from ${req.session.username}`);
         res.status(200).sendFile(path.join(__dirname + '/assets/static/userform.html'));
     } else {
-        res.send("Please login");
+        // res.send("Please login");
+        res.status(200).sendFile(path.join(__dirname + '/assets/static/noLogin.html'));
     }
 });
 app.get('/productform', authUser, function (req, res, next) {
@@ -340,7 +342,8 @@ app.get('/productform', authUser, function (req, res, next) {
         console.log(`productform request from ${req.session.username}`);
         res.status(200).sendFile(path.join(__dirname + '/assets/static/productform.html'));
     } else {
-        res.send("Please login");
+        // res.send("Please login");
+        res.status(200).sendFile(path.join(__dirname + '/assets/static/noLogin.html'));
     }
 });
 
