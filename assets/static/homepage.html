@@ -1,13 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 
+  <link rel="stylesheet" type="text/css" href='/static/Css.css'>
+
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     * {
       box-sizing: border-box;
     }
+    div.box{
+      align-items: center;
+      justify-content: center;
+    }
+    header {
 
+      border-top: 20px;
+          width: 100%;         
+          height: 50px;
+      background-color: #2E4053;
+    }
+    div.left{
+      left: 0;
+      width: 50%;
+      position: absolute;
+
+      padding-right: 30px;
+    }
+    div.right{
+      right: 0;
+      width: 25%;
+      padding-right: 40px;
+      background-color: #2E4053;
+      position: absolute;
+    }
+    header h2{
+      top: 0;
+      text-align: right;
+    }
+    div.input{
+      display: block;
+      float: right;
+    }
     html {
 
       background-color: #2E4053;
@@ -19,11 +53,6 @@
       margin: 0;
     }
 
-    header h1 {
-      border: none;
-      top: 0;
-      background-color: #2E4053;
-    }
 
     header,
     footer {
@@ -88,6 +117,8 @@
     }
 
     .navbar {
+      top: auto;
+      padding-top: 64px;
       background-color: #2E4053;
       width: 100%;
       overflow: auto;
@@ -254,7 +285,6 @@
     /*end adver*/
   </style>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-  <link rel="stylesheet" type="text/css" href="/static/Css.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -262,27 +292,28 @@
 
 <body>
   <header id="top">
-    <h1>SHOPME
-
-    </h1>
+    <div class="left">
+      <h1>SHOPME</h1>
+    </div>
     <!-- Api weather</-->
     <div>
-     <div><h1>Current weather</h1></div>
+     <div class="right"><h2>Current weather</h2>
     <div class="input">
       <input type="text" placeholder="Type:Bangkok, New York or Japan" value="Bangkok" class="input_text">
       <input type="submit" value="Enter" class="submit">
+      <div class="box2">
+        <h1 class="name" id="name"></h1>
+        <p class="temp"></p>
+        <p class="visibility"></p>
+        <p class="wind"></p>
+        <p class="desc"></p>
     </div>
-
-  <div class="box">
-      <h1 class="name" id="name"></h1>
-      <p class="temp"></p>
-      <p class="visibility"></p>
-      <p class="wind"></p>
-      <p class="desc"></p>
+  <script src="/static/weather.js"></script>
+    </div>
   </div>
+
   
     </div>
-    <script src="/static/weather.js"></script>
 
 
   </header>
