@@ -39,14 +39,7 @@
     <label>Password:</label>
     <input type="text" placeholder="Password" id="PW"><br>
     <label>Role:</label>
-    <input type="text" placeholder="Role" id="R"><br>
-     <!-- Role:
-  <form>
-    <select id="role" name='role' style="padding: 10px;" onchange="getSelectValue();">
-      <option value="admin">admin</option>
-      <option value="user">user</option>
-    </select>
-  </form> -->
+    <input type="text" placeholder="admin/user" id="R"><br>
       
     <button type="button" id="Insert" class="btnIN">Insert</button>
     <button type="button" id="Update" class="btnUp">Update</button>
@@ -58,19 +51,6 @@
     </div>
   </form>
   <script>
-    // update to make select work
-    // var e = document.getElementById("selectElementID");
-    // var value=e.selectElement.options[e.selectedIndex].value;// get selected option value
-    // var text=e.options[e.selectedIndex].text;//get the selected option text
-
-    // function getSelectValue()
-    //     {
-    //         var selectedValue = document.getElementById("list").value;
-    //         alert(selectedValue);
-    //     }
-    //     getSelectValue();
-
-    //end my select
 
     async function callUSERWS(url, method, sentData = {}) {
       let data;
