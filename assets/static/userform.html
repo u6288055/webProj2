@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <head>
-  <link rel="stylesheet" type="text/css" href='Css.css'>
+  <link rel="stylesheet" type="text/css" href='/static/Css.css'>
 </head>
 
 <body>
@@ -21,26 +21,26 @@
   <form>
     <h1>User</h1>
     <label>UserID:</label>
-    <input type="text" placeholder="StudentID" id="SD"><br>
+    <input type="text" placeholder="123456" id="SD"><br>
     <label>Firstname:</label>
-    <input type="text" placeholder="Firstname" id="FN"><br>
+    <input type="text" placeholder="xxxxx" id="FN"><br>
     <label>Lastname:</label>
-    <input type="text" placeholder="Lastname" id="LN"><br>
+    <input type="text" placeholder="xxxxx" id="LN"><br>
     <label>Email:</label>
-    <input type="text" placeholder="Email" id="email"><br>
+    <input type="text" placeholder="xxx@xxx.xx" id="email"><br>
     <label>address:</label>
     <input type="text" placeholder="address" id="AD"><br>
     <label>Phonenumber:</label>
-    <input type="text" placeholder="Phone number" id="PN"><br>
+    <input type="text" placeholder="0xxxxxxxxx" id="PN"><br>
     <label>Date of birth:</label>
-    <input type="text" placeholder="Date of birth" id="DOB"><br>
+    <input type="text" placeholder="YYYY-MM-DD" id="DOB"><br>
     <label>Username:</label>
     <input type="text" placeholder="Username" id="UN"><br>
     <label>Password:</label>
     <input type="text" placeholder="Password" id="PW"><br>
     <label>Role:</label>
-    <input type="text" placeholder="Role" id="R"><br>
-
+    <input type="text" placeholder="admin/user" id="R"><br>
+      
     <button type="button" id="Insert" class="btnIN">Insert</button>
     <button type="button" id="Update" class="btnUp">Update</button>
     <button type="button" id="Delete" class="btnDe">Delete</button>
@@ -51,6 +51,7 @@
     </div>
   </form>
   <script>
+
     async function callUSERWS(url, method, sentData = {}) {
       let data;
       if (method == "selectall") {

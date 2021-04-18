@@ -6,18 +6,23 @@ dotenv.config();
 const session = require('express-session');
 var bodyParser = require('body-parser');
 app.use(express.json());
+
 const path = require('path');
+
 app.use(session({
     secret: 'secret',
     resave: true,
     saveUninitialized: true
 }));
+
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+
 app.use(bodyParser.json());
 //
 //--------------------------
+
 app.post('/auth', function (request, response) {
     var username = request.body.username;
     var password = request.body.password;
@@ -57,7 +62,7 @@ app.post('/auth', function (request, response) {
 
             } else {
                 console.log('Incorrect Username and/or Password!');
-                response.redirect('/login');
+                response.redirect('/auth-alert');
             }
             response.end();
 
@@ -69,23 +74,10 @@ app.post('/auth', function (request, response) {
         //response.end();
     }
 });
-/* HERE NAJA */
-
-function authUser(req, res, x, next) {
-    console.log(x)
-    if (x === 'admin') {
-        console.log("hello admin");
-        // return next()
-    } else {
-        console.log("yametae kudasai");
-        // return res.send("No alow");
-    }
-
-}
 
 const route = express.Router();
-//const loginRoute = require('./routes/login');
-app.use(express.static(path.join(__dirname)));
+
+app.use(express.static(path.join(__dirname + "/assets")));
 app.use("/", route);;
 //app.set('')
 const mysql = require('mysql2');
@@ -98,6 +90,23 @@ var connection = mysql.createConnection({
     password: process.env.MYSQL_PASSWORD,
     database: process.env.MYSQL_DATABASE
 });
+
+/* HERE NAJA */
+
+function authUser(req, res, x, next) {
+    console.log(x)
+
+    if (x === 'admin') {
+        console.log("hello admin");
+        // return next()
+    } else {
+        console.log("yametae kudasai");
+        // return res.send("No alow");
+    }
+
+}
+/*to here */
+
 /*app.use(cookieSession({
     name:'session',
     keys:['key1','key2']
@@ -108,7 +117,8 @@ connection.connect(function (err) {
     }
     console.log("connected DB: " + process.env.MYSQL_DATABASE);
 });
-//userform
+
+//userform, admin only
 route.get('/users', function (req, res) {
     connection.query('SELECT * FROM user', function (error, results) {
         if (error) throw error;
@@ -138,6 +148,7 @@ route.post('/user', function (req, res) {
         });
     });
 });
+
 route.put('/user', function (req, res) {
     let UID = req.body.user.UID;
     let user = req.body.user;
@@ -156,6 +167,7 @@ route.put('/user', function (req, res) {
         })
     });
 });
+
 route.delete('/user', function (req, res) {
     let UID = req.body.UID;
     if (!UID) {
@@ -173,6 +185,7 @@ route.delete('/user', function (req, res) {
         });
     });
 });
+
 route.get('/user/:id', function (req, res) {
     let UID = req.params.id;
     if (!UID) {
@@ -190,7 +203,8 @@ route.get('/user/:id', function (req, res) {
         });
     });
 });
-//productform
+
+//productform admin onlly
 route.get('/products', function (req, res) {
     connection.query('SELECT * FROM product', function (error, results) {
         if (error) throw error;
@@ -272,6 +286,7 @@ route.get('/product/:id', function (req, res) {
         });
     });
 });
+
 /* Server listening */
 app.listen(process.env.PORT, function () {
     console.log("Server listening at Port 3030");
@@ -279,24 +294,28 @@ app.listen(process.env.PORT, function () {
 
 route.get('/login', function (req, res) {
     console.log("login page request");
-    res.status(200).sendFile(path.join(__dirname + '/login.html'));
+    res.status(200).sendFile(path.join(__dirname + '/assets/static/login.html'));
 });
 route.get('/aboutus', function (req, res) {
     console.log("about us page request");
-    res.status(200).sendFile(path.join(__dirname + '/aboutus.html'));
+    res.status(200).sendFile(path.join(__dirname + '/assets/static/aboutus.html'));
 });
 route.get('/homepage', function (req, res) {
     console.log("home page request");
-    res.status(200).sendFile(path.join(__dirname + '/homepage.html'));
+    res.status(200).sendFile(path.join(__dirname + '/assets/static/homepage.html'));
     //req.use(express.static((__dirname+'/homepage.html')))
 });
+route.get('/auth-alert', function (req, res) {
+    console.log("username or password error");
+    res.status(200).sendFile(path.join(__dirname) + '/assets/static/auth-alert.html')
+})
 
 route.get('/search', function (req, res) {
     console.log("search page request");
-    res.status(200).sendFile(path.join(__dirname + '/search.html'));
+    res.status(200).sendFile(path.join(__dirname + '/assets/static/search.html'));
 });
 route.get('/result', function (req, res) {
-    res.status(200).sendFile(path.join(__dirname + '/result.html'));
+    res.status(200).sendFile(path.join(__dirname + '/assets/static/result.html'));
 
 });
 
@@ -305,9 +324,10 @@ app.get('/admin', authUser, function (request, response, next) {
 
     if (request.session.loggedin) {
         console.log(`admin page request from ${request.session.username}`);
-        response.status(200).sendFile(path.join(__dirname + '/admin.html'));
+        response.status(200).sendFile(path.join(__dirname + '/assets/static/admin.html'));
     } else {
-        response.send("Please login");
+        // response.send("Please login");
+        response.status(200).sendFile(path.join(__dirname + '/assets/static/noLogin.html'));
     }
 
     //response.end();
@@ -315,45 +335,52 @@ app.get('/admin', authUser, function (request, response, next) {
 app.get('/userform', authUser, function (req, res, next) {
     if (req.session.loggedin) {
         console.log(`userform request from ${req.session.username}`);
-        res.status(200).sendFile(path.join(__dirname + '/userform.html'));
+        res.status(200).sendFile(path.join(__dirname + '/assets/static/userform.html'));
     } else {
-        res.send("Please login");
+        // res.send("Please login");
+        res.status(200).sendFile(path.join(__dirname + '/assets/static/noLogin.html'));
     }
 });
 app.get('/productform', authUser, function (req, res, next) {
     if (req.session.loggedin) {
         console.log(`productform request from ${req.session.username}`);
-        res.status(200).sendFile(path.join(__dirname + '/productform.html'));
+        res.status(200).sendFile(path.join(__dirname + '/assets/static/productform.html'));
     } else {
-        res.send("Please login");
+        // res.send("Please login");
+        res.status(200).sendFile(path.join(__dirname + '/assets/static/noLogin.html'));
     }
 });
+
 route.get('/allproducts/:keyword', function (req, res) {
     console.log("result page request");
     console.log("search for = " + req.params.keyword);
-    //var key =document.getElementById("#output");
     let word = req.params.keyword;
-    if (word) {
+    if (word != "") {
         connection.query(`SELECT * FROM product WHERE Pname like '%${word}%'`, function (error, results) {
             if (error) throw error;
             else {
-                return res.send({
-                    error: false,
-                    data: results,
-                    message: 'Product list'
-                });
+
+
+                if (results.length > 0) {
+                    return res.send({
+                        error: false,
+                        data: results,
+                        message: 'Product list'
+                    });
+                } else {
+                    connection.query(`SELECT * FROM product`, function (error, results) {
+                        if (error) throw error;
+                        else {
+                            return res.send({
+                                error: false,
+                                data: results,
+                                message: 'Product list'
+                            });
+                        }
+                    })
+                }
             }
-        })
-    } else {
-        connection.query(`SELECT * FROM product`, function (error, results) {
-            if (error) throw error;
-            else {
-                return res.send({
-                    error: false,
-                    data: results,
-                    message: 'Product list'
-                });
-            }
+
         })
     }
 
